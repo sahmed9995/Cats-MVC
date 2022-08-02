@@ -1,5 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient("catsapi", client =>
+{
+    client.BaseAddress = new Uri("https://catfact.ninja/");
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

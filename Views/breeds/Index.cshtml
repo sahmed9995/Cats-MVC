@@ -1,0 +1,40 @@
+@model ResultsViewModel<BreedsViewModel>
+
+@{
+    ViewData["Title"] = "Cat Breeds";
+}
+
+<h1>Cat Breeds Index</h1>
+
+@if (Model.Data?.Count() > 0)
+{
+    <div>
+        @foreach (var breed in Model.Data)
+        {
+            <div>
+                <h4>@breed.Breed</h4>
+                <div>
+                    <p>Country: @breed.Country</p>
+                    <p>Origin: @breed.Origin</p>
+                    <p>Coat: @breed.Coat</p>
+                    <p>Pattern: @breed.Pattern</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        @if (Model.Previous is not null)
+        {
+            <a asp-action="Index" asp-route-page="@Model.PreviousPageNum"> Previous</a>
+        }
+        @if (Model.Next is not null)
+        {
+            <a asp-action="Index" asp-route-page="@Model.NextPageNum"> Next</a>
+        }
+    </div>
+
+}
+else
+{
+    <p>There are no results for this page.</p>
+}
